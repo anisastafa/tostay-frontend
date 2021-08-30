@@ -3,7 +3,7 @@ import {Toolbar, AppBar, Typography, Button, makeStyles} from "@material-ui/core
 import {Link as RouterLink} from "react-router-dom";
 import "../header/Header.css"
 import {useSelector} from "react-redux";
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
     header: {
@@ -52,21 +52,30 @@ const Header = () => {
         </Typography>
     );
 
-
     const authority = useSelector((state) => state.auth.authority);
     console.log("authorities from header: ", authority);
     const getHeaderButtons = () => {
         return (
             <div>
                 {(token && authority === "ROLE_HOST" &&
-                    <Button
-                        {...{
-                            to: "/hostsApartments",
-                            component: RouterLink,
-                            className: headerButtons
-                        }}>
-                        My Apartments
-                    </Button>
+                    [
+                        <Button
+                            {...{
+                                to: "/addApartments",
+                                component: RouterLink,
+                                className: headerButtons
+                            }}>
+                            Add Apartments
+                        </Button>,
+                        <Button
+                            {...{
+                                to: "/hostsApartments",
+                                component: RouterLink,
+                                className: headerButtons
+                            }}>
+                            My Apartments
+                        </Button>
+                    ]
                 )}
                 {(token && authority === "ROLE_USER" &&
                     <Button
@@ -78,7 +87,7 @@ const Header = () => {
                         My Bookings
                     </Button>
                 )}
-                {(!token  &&
+                {(!token &&
                     <Button
                         {...{
                             to: "/hostRegister",

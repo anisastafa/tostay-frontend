@@ -5,12 +5,12 @@ import Paper from "@material-ui/core/Paper";
 import Avatar from "@material-ui/core/Avatar";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
-import Loader from "react-loader-spinner";
-import {Redirect, useHistory} from "react-router-dom";
-import UserRegisterForm from "./UserRegisterForm";
+import {useHistory} from "react-router-dom";
 import {makeStyles} from "@material-ui/core";
-import {useDispatch, useSelector} from "react-redux";
-import {login} from "../../redux/actions/authActions";
+import {useDispatch} from "react-redux";
+import {reduxForm} from "redux-form";
+import RegisterForm from "./RegisterForm";
+import { registerUser} from "../../redux/actions/authActions";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -34,18 +34,22 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const UserRegister = () => {
+const UserRegister = (props) => {
     const dispatch = useDispatch();
-    const token = useSelector((state) => state.auth.token);
-    let onSubmitClicked = false;
     const history = useHistory();
     const {image, root, paper, avatar} = useStyles();
 
     const onSubmit = async (formProps) => {
-        onSubmitClicked = true;
         dispatch(
-
+            await registerUser({
+                firstname: formProps.firstname,
+                lastname: formProps.lastname,
+                username: formProps.username,
+                email: formProps.email,
+                password: formProps.password,
+            })
         );
+        history.push("/login");
     };
     return (
         <Grid container component="main" className={root}>
@@ -57,32 +61,13 @@ const UserRegister = () => {
                         <LockOutlinedIcon/>
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Sign in
+                        Create Account
                     </Typography>
-                    {(onSubmitClicked && (
-                        <Loader
-                            type="Puff"
-                            color="#0000"
-                            height={100}
-                            width={100}
-                            timeout={3000} //3 secs
-                        />
-                    )) ||
-                    (!onSubmitClicked && token && (
-                        <Redirect
-                            to={{
-                                pathname: "/home",
-                                state: {
-                                    from: props.location,
-                                },
-                            }}
-                        />
-                    ))}
-                    <UserRegisterForm onSubmit={onSubmit}/>
+                    <RegisterForm onSubmit={onSubmit}/>
                 </div>
             </Grid>
         </Grid>
     )
 };
 
-export default UserRegister;
+export default reduxForm({form: "register"})(UserRegister);

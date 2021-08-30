@@ -14,15 +14,33 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-let UserRegisterForm = (props) => {
+let RegisterForm = (props) => {
     const classes = useStyles();
     const {handleSubmit, onSubmit} = props;
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <Field
                 type="text"
+                placeholder="FirstName"
+                name="FirstName"
+                component={CustomInput}
+            />
+            <Field
+                type="text"
+                placeholder="LastName"
+                name="LastName"
+                component={CustomInput}
+            />
+            <Field
+                type="text"
                 placeholder="Username"
                 name="username"
+                component={CustomInput}
+            />
+            <Field
+                type="text"
+                name="email"
+                placeholder="email"
                 component={CustomInput}
             />
             <Field
@@ -44,5 +62,5 @@ let UserRegisterForm = (props) => {
     );
 };
 export default reduxForm({form: "register"})(
-    UserRegisterForm
+    RegisterForm
 );

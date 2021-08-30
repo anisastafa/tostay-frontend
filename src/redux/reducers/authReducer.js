@@ -44,7 +44,6 @@ export default function authReducer(state = initialState, action) {
         case REGISTER_SUCCESS:
             return {
                 ...state,
-                isAuthenticated: false,
                 isLoading: false,
                 user: action.payload,
             };
@@ -54,7 +53,6 @@ export default function authReducer(state = initialState, action) {
         case REGISTER_FAIL:
             return {
                 ...state,
-                token: null,
                 user: null,
                 isAuthenticated: false,
                 isLoading: false,

@@ -98,7 +98,7 @@ const Login = (props) => {
                               onClick={() => {
                                   history.push("/userRegister");
                               }}>
-                            {"Don't have an account? Sign Up"}
+                            {"Want to rent apartments with us? Sign Up"}
                         </Link>
                     </Grid>
                 </div>

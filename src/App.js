@@ -4,10 +4,12 @@ import Header from "./components/header/Header";
 import { Route } from "react-router-dom";
 import Login from "./components/login/Login";
 import Home from "./components/home/Home";
-import HostRegister from "./components/register/HostRegister";
 import UsersBookings from "./components/bookings/UsersBookings";
 import HostsApartments from "./components/apartments/HostsApartments";
 import UserRegister from "./components/register/UserRegister";
+import HostRegister from "./components/register/HostRegister";
+import {ProtectedRoute} from "./components/ProtectedRoute";
+import AddApartments from "./components/apartments/AddApartments";
 
 const App = () => {
     return (
@@ -16,9 +18,9 @@ const App = () => {
             <Route path="/home" exact component={Home}/>
             <Route path="/" exact component={Home}/>
             <Route path="/login" component={Login}/>
-            <Route path="/hostRegister" component={HostRegister}/>
-            <Route path="/usersBookings" component={UsersBookings}/>
-            <Route path="/hostsApartments" component={HostsApartments}/>
+            <ProtectedRoute path="/usersBookings" component={UsersBookings}/>
+            <ProtectedRoute path="/hostsApartments" component={HostsApartments}/>
+            <ProtectedRoute path="/addApartments" component={AddApartments}/>
             <Route path="/hostRegister" component={HostRegister}/>
             <Route path="/userRegister" component={UserRegister}/>
         </div>
