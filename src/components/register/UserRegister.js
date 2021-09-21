@@ -61,7 +61,7 @@ const UserRegister = (props) => {
                         <LockOutlinedIcon/>
                     </Avatar>
                     <Typography component="h1" variant="h5">
-                        Create Account
+                        Create User Account
                     </Typography>
                     <RegisterForm onSubmit={onSubmit}/>
                 </div>

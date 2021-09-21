@@ -47,8 +47,12 @@ const HostRegister = () => {
                 username: formProps.username,
                 email: formProps.email,
                 password: formProps.password,
+                description: formProps.description,
+                phone_number: formProps.phone_number,
+                file: formProps.file,
             })
         );
+        console.log("success: ", formProps.file);
         history.push("/login");
     };
 

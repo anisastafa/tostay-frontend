@@ -6,7 +6,7 @@ import {useDispatch} from "react-redux";
 import {
     createApartmentAction,
 } from "../../redux/actions/apartmentActions";
-import { useHistory } from "react-router-dom";
+import {useHistory} from "react-router-dom";
 
 const validationSchema = Yup.object().shape({
     apartment_name: Yup.string()
@@ -49,6 +49,8 @@ const AddApartments = () => {
                 description: formProps.description,
                 country: formProps.country,
                 city: formProps.city,
+                latitude: formProps.latitude,
+                longitude: formProps.longitude,
                 total_bedrooms: formProps.total_bedrooms,
                 total_bathrooms: formProps.total_bathrooms,
                 has_tv: formProps.has_tv,
@@ -61,7 +63,6 @@ const AddApartments = () => {
         history.push("/hostsApartments");
     };
     return (
-
         <div className="card m-3">
             <link href="//netdna.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"/>
             <h5 className="card-header">Add an Apartment</h5>
@@ -77,8 +78,8 @@ const AddApartments = () => {
                     <div className="form-row">
                         <div className="form-group col-5">
                             <label>Description</label>
-                            <textarea  name="description" {...register('description')} rows="3"
-                                   className={`form-control ${errors.description ? 'is-invalid' : ''}`}/>
+                            <textarea name="description" {...register('description')} rows="3"
+                                      className={`form-control ${errors.description ? 'is-invalid' : ''}`}/>
                         </div>
                     </div>
                     <div className="form-row">
@@ -93,6 +94,20 @@ const AddApartments = () => {
                             <label>City</label>
                             <input name="city" type="text" {...register('city')}
                                    className={`form-control ${errors.city ? 'is-invalid' : ''}`}/>
+                        </div>
+                    </div>
+                    <div className="form-row">
+                        <div className="form-group col-5">
+                            <label>Latitude</label>
+                            <input name="latitude" type="text" {...register('latitude')}
+                                   className={`form-control`}/>
+                        </div>
+                    </div>
+                    <div className="form-row">
+                        <div className="form-group col-5">
+                            <label>Longitude</label>
+                            <input name="longitude" type="text" {...register('longitude')}
+                                   className={`form-control`}/>
                         </div>
                     </div>
                     <div className="form-row">
@@ -133,19 +148,21 @@ const AddApartments = () => {
                     </div>
                     <div className="form-row">
                         <div className="form-group col-5">
-                            <label>Choose an Image...</label>
                             <input {...register('files')} type="file" name="files" multiple="multiple"
-                                   // onChange={(event) => dispatch(selectedImagesAction(event))}
                             />
                         </div>
                     </div>
-                    {/*<input {...register('file')} type="file" name="file"*/}
-                    {/*       onChange={(event) => dispatch(uploadApartmentFileAction(event))}*/}
-                    {/*/>*/}
-                    {/*<FileInput name="file" control={control}/>*/}
                     <div className="form-group">
                         <button type="submit" className="btn btn-primary mr-1">Add Apartment</button>
                     </div>
+                    {/*<div className="col-lg-5">*/}
+                    {/*    <div className="map">*/}
+                    {/*        <iframe*/}
+                    {/*            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3571289.733943155!2d76.08560099999998!3d29.058775699999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390e4a4b98404f57%3A0x75ffae70833e8448!2sShahbad%2C%20Haryana%20136135!5e0!3m2!1sen!2sin!4v1594195370933!5m2!1sen!2sin"*/}
+                    {/*            width="100%" height="350" frameBorder="0" allowFullScreen=""*/}
+                    {/*            aria-hidden="false" tabIndex="0"/>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                 </form>
             </div>
         </div>

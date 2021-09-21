@@ -28,16 +28,21 @@ export const registerUser = (user) => async (dispatch) => {
 };
 
 export const registerHost = (user) => async (dispatch) => {
+
+    const formData = new FormData();
+    formData.append("firstname", user.firstname);
+    formData.append("lastname", user.lastname);
+    formData.append("username", user.username);
+    formData.append("email", user.email);
+    formData.append("password", user.password);
+    formData.append("description", user.description);
+    formData.append("phone_number", user.phone_number);
+    formData.append("file", user.file[0]);
+    console.log("file name from authactions: ", user.file[0]);
     axios({
         method: "POST",
         url: "http://localhost:8080/createHost",
-        data: {
-            firstname: user.firstname,
-            lastname: user.lastname,
-            username: user.username,
-            email: user.email,
-            password: user.password,
-        }
+        data: formData,
     }).then((user) => {
         dispatch({
             type: REGISTER_SUCCESS,
@@ -68,12 +73,9 @@ export const login = (user) => async (dispatch) => {
             console.log('authAction token: ', response.data.token);
             const token = response.data.token;
             const user1 = jwtDecode(token);
-            console.log(user1);
             const authorities = user1.authorities;
-            console.log(authorities);
             const authority = authorities[0].authority;
             localStorage.setItem("authority", authority);
-            console.log("authority: ", authority);
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: {

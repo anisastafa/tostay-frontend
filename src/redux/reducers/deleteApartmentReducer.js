@@ -19,7 +19,7 @@ export default function (state = initialState, action) {
         case DELETE_APARTMENT_SUCCESS:
             return {
                 ...state,
-                apartments: state.apartments.filter(apartment => apartment !== action.payload),
+                // apartments: state.apartments.filter(apartment => apartment !== action.payload),
                 pending: false,
             };
         case DELETE_APARTMENT_FAIL:

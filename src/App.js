@@ -23,6 +23,7 @@ const App = () => {
             <ProtectedRoute path="/addApartments" component={AddApartments}/>
             <Route path="/hostRegister" component={HostRegister}/>
             <Route path="/userRegister" component={UserRegister}/>
+
         </div>
     )
 };

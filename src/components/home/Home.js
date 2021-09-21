@@ -1,7 +1,7 @@
 import React from "react";
 import {makeStyles} from "@material-ui/core";
 import Image from "../../assets/main.jpg";
-import ApartmentsByDate from "../apartments/ApartmentsByDate";
+import {ApartmentsHome} from "../apartments/ApartmentsHome";
 
 
 const useStyles = makeStyles(() => ({
@@ -12,11 +12,10 @@ const useStyles = makeStyles(() => ({
     }
 }));
 const Home = () => {
-    console.log("home");
     const { media } = useStyles();
     return (
         <div className={media}>
-            <ApartmentsByDate/>
+            <ApartmentsHome/>
         </div>
     );
 };

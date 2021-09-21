@@ -88,14 +88,23 @@ const Header = () => {
                     </Button>
                 )}
                 {(!token &&
-                    <Button
+                   [ <Button
                         {...{
                             to: "/hostRegister",
                             component: RouterLink,
                             className: headerButtons
                         }}>
                         Become a Host
-                    </Button>
+                    </Button>,
+                   <Button
+                       {...{
+                               to: "/userRegister",
+                               component: RouterLink,
+                               className: headerButtons
+                           }}>
+                       Create User Account
+                   </Button>
+                   ]
                 )}
                 {(!token &&
                     <Button
@@ -113,6 +122,7 @@ const Header = () => {
                     variant="outlined" color="secondary"
                     onClick={() => {
                         localStorage.removeItem("token");
+                        localStorage.removeItem("authority");
                         history.push("/home")
                     }}
                     {...{
